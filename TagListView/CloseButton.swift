@@ -17,6 +17,16 @@ internal class CloseButton: UIButton {
     weak var tagView: TagView?
 
     override func draw(_ rect: CGRect) {
+
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: 15,y: 14), radius: CGFloat(8), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = circlePath.cgPath
+        shapeLayer.fillColor = UIColor.darkGray.cgColor
+        shapeLayer.strokeColor = UIColor.darkGray.cgColor
+        shapeLayer.lineWidth = 1.0
+        self.layer.addSublayer(shapeLayer)
+
         let path = UIBezierPath()
 
         path.lineWidth = lineWidth
@@ -37,6 +47,14 @@ internal class CloseButton: UIButton {
         lineColor.setStroke()
 
         path.stroke()
+
+        let multiply = CAShapeLayer()
+        multiply.path = path.cgPath
+        multiply.fillColor = UIColor.clear.cgColor
+        multiply.strokeColor = UIColor.white.cgColor
+        multiply.lineWidth = 1.0
+        self.layer.addSublayer(multiply)
+
     }
 
 }
